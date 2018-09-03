@@ -1,0 +1,68 @@
+{% extends 'layouts.master' %}
+
+{% block title %} All Tickets {% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<i class="fa fa-ticket"> Tickets</i>
+				</div>
+
+				<div class="panel-body">
+					{% if tickets.length == 0 %}
+						<p>There are currently no tickets.</p>
+					{% else %}
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Category</th>
+									<th>Title</th>
+									<th>Status</th>
+									<th>Last Updated</th>
+									<th style="text-align:center" colspan="2">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for ticket in tickets %}
+								<tr>
+									<td>
+									{% for category in categories %}
+										{% if category.id == ticket.category_id %}
+											{{ category.name }}
+										{% endif %}
+									{% endfor %}
+									</td>
+									<td>
+										<a href="/tickets/{{ ticket.ticket_id }}">
+											#{{ ticket.ticket_id }} - {{ ticket.title }}
+										</a>
+									</td>
+									<td>
+									{% if ticket.status == 'Open' %}
+										<span class="label label-success">{{ ticket.status }}</span>
+									{% else %}
+										<span class="label label-danger">{{ ticket.status }}</span>
+									{% endif %}
+									</td>
+									<td>{{ ticket.updated_at }}</td>
+									<td>
+										<a href="/tickets/{{ ticket.ticket_id }}" class="btn btn-primary">Comment</a>
+									</td>
+									<td>
+										{{ form.open({ url: '/admin/close_ticket/' + ticket.ticket_id, method: 'POST' }) }}
+											{{ csrfField }}
+											{{ form.button('Close', null, { class: 'btn btn-danger' }) }}
+										{{ form.close() }}
+									</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
