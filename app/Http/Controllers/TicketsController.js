@@ -1,6 +1,5 @@
 'use strict'
 
-// const Mail = use('Mail')
 const Validator = use('Validator')
 const Ticket = use('App/Model/Ticket')
 const RandomString = use('randomstring')
@@ -12,6 +11,28 @@ class TicketsController {
     const categories = yield Category.all()
 
     yield response.sendView('tickets.index', { tickets: tickets.toJSON(), categories: categories.toJSON() })
+  }
+  * show(request, response) {
+    const ticket = yield Ticket.query()
+                    .where('ticket_id', request.param('ticket_id'))
+                    .with('user')
+                    .firstOrFail()
+    const category = yield ticket.category().fetch()
+
+    yield response.sendView('tickets.show', {
+        ticket: ticket.toJSON(),
+        category: category.toJSON()
+    })
+  }
+  * close(request, response) {
+    const ticket = yield Ticket.query()
+                    .where('ticket_id', request.param('ticket_id'))
+                    .firstOrFail()
+    ticket.status = 'Closed'
+    yield ticket.save()
+
+    yield request.with({ status: 'The ticket has been closed.' }).flash()
+    response.redirect('back')
   }
   * create(request, response) {
     const categories = yield Category.pair('id', 'name')

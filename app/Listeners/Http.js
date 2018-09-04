@@ -13,7 +13,12 @@ const Http = exports = module.exports = {}
  */
 Http.handleError = function * (error, request, response) {
   const status = error.status || 500
-
+  
+  if (error.name === 'InvalidLoginException') {
+    yield response.sendView('auth.login')
+    return
+  }
+  
   /**
    * DEVELOPMENT REPORTER
    */
