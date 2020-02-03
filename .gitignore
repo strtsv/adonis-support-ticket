@@ -4,3 +4,4 @@ storage
 .env
 npm-debug.log
 .sqlite
+yarn.lock
