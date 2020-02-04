@@ -11,16 +11,18 @@
   "description": "",
   "private": true,
   "dependencies": {
-    "adonis-ace": "^3.0.7",
-    "adonis-auth": "^1.0.5",
+    "adonis-ace": "^3.0.8",
+    "adonis-auth": "^1.0.7",
     "adonis-commands": "^2.1.5",
     "adonis-fold": "^3.0.3",
-    "adonis-framework": "^3.0.10",
+    "adonis-framework": "^3.0.14",
     "adonis-lucid": "^3.0.16",
-    "adonis-middleware": "^1.0.11",
-    "adonis-websocket": "^1.0.3",
-    "sqlite3": "^4.0.2",
-    "youch": "^2.0.4"
+    "adonis-middleware": "^1.0.14",
+    "adonis-validation-provider": "^3.0.5",
+    "adonis-websocket": "^1.0.4",
+    "sqlite3": "^4.1.1",
+    "standard": "^14.3.1",
+    "youch": "^2.0.10"
   },
   "standard": {
     "global": [
@@ -32,8 +34,6 @@
     "App": "./app"
   },
   "devDependencies": {
-    "adonis-validation-provider": "^3.0.5",
-    "nodemon": "^1.11.0",
-    "standard": "^10.0.1"
+    "nodemon": "^1.11.0"
   }
 }

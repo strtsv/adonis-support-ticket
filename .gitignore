@@ -5,3 +5,4 @@ storage
 npm-debug.log
 .sqlite
 yarn.lock
+req.txt
