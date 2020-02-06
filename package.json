@@ -4,6 +4,7 @@
   "main": "server.js",
   "scripts": {
     "serve": "nodemon server.js",
+    "dev": "node server.js",
     "lint": "standard"
   },
   "author": "",
