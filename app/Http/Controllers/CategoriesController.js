@@ -9,7 +9,7 @@ class CategoriesController {
   * index(request, response) {
     const categories = yield Category.all()
 
-    yield response.sendView('admin.category.index', { categories: categories.toJSON() })
+    yield response.sendView('category.index', { categories: categories.toJSON() })
   }
 }
 

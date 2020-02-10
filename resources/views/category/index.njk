@@ -1,0 +1,46 @@
+{% extends 'layouts.master' %}
+
+{% block title %}
+  Category
+{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <i class="fa fa-ticket">
+            Category</i>
+        </div>
+
+        <div class="panel-body">
+          {% if categories.length == 0 %}
+            <p>There are currently no tickets.</p>
+          {% else %}
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Last Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for category in categories %}
+                  <tr>
+                    <td>
+                      {{ category.name }}
+                    </td>
+                    <td>
+                      {{ category.updated_at }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
