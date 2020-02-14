@@ -1,0 +1,48 @@
+{% extends 'layouts.master' %}
+
+{% block title %}
+  Department
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Department</div>
+      <div class="panel-body">
+        <a href="{{ ('/department/create') }}" class="btn btn-success btn-sm" title="Add New Article">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Add New
+        </a>
+        {% if old('error') %}
+          <div class="alert alert-danger">
+            {{ old('error') }}
+          </div>
+        {% endif %}
+
+        {% if user.length == 0 %}
+          <p>There are currently no tickets.</p>
+        {% else %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for depart in departemens %}
+                <tr>
+                  <td>{{ depart.name }}
+                  </td>
+
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
