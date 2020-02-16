@@ -9,7 +9,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Department</div>
       <div class="panel-body">
-        <a href="{{ ('/department/create') }}" class="btn btn-success btn-sm" title="Add New Article">
+        <a href="{{ ('/departments/create') }}" class="btn btn-success btn-sm" title="Add New Article">
           <i class="fa fa-plus" aria-hidden="true"></i>
           Add New
         </a>
@@ -30,7 +30,7 @@
               </tr>
             </thead>
             <tbody>
-              {% for depart in departemens %}
+              {% for depart in departments %}
                 <tr>
                   <td>{{ depart.name }}
                   </td>

@@ -10,7 +10,7 @@
       <div class="panel-heading">New department
       </div>
       <div class="panel-body">
-        <a href="{{ ('/department') }}" title="Back">
+        <a href="{{ ('/departments') }}" title="Back">
           <button class="btn btn-warning btn-xs">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
             Back</button>
@@ -20,7 +20,7 @@
 
         {% include 'includes.errors' %}
 
-        {{ form.open({ url: '/department', method: 'POST', class: 'form-horizontal' }) }}
+        {{ form.open({ url: '/departments', method: 'POST', class: 'form-horizontal' }) }}
         {{ csrfField }}
 
         <div class="form-group">

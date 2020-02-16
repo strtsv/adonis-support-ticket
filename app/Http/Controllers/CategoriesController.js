@@ -44,7 +44,7 @@ class CategoriesController {
     console.log(`user is ${user.email} and name is ${name}`);
 
     yield request.with({ status: `A ticket with ID: has been opened.` }).flash()
-    response.redirect('/category')
+    response.redirect('/categories')
   }
 }
 
