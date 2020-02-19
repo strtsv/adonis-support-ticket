@@ -1,67 +1,70 @@
 {% extends 'layouts.master' %}
 
 {% block title %}
-    Department
+  Department
 {% endblock %}
 
 {% block content %}
 
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Items</div>
-                    <div class="panel-body">
-                      <a href="{{ ('/admin/items/create') }}" class="btn btn-success btn-sm" title="Add New Article">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                      </a>
-                        {% if old('error') %}
-                            <div class="alert alert-danger">
-                                {{ old('error') }}
-                            </div>
-                        {% endif %}
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Items</div>
+      <div class="panel-body">
+        <a href="{{ ('/items/create') }}" class="btn btn-success btn-sm" title="Add New Article">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Add New
+        </a>
+        {% if old('error') %}
+          <div class="alert alert-danger">
+            {{ old('error') }}
+          </div>
+        {% endif %}
 
+        {% if items.length == 0 %}
+          <p>There are currently no tickets.</p>
+        {% else %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Room</th>
+                <th>Vendor</th>
+                <th>Date Buy</th>
+                <th style="text-align:center" colspan="2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in items %}
+                <tr>
+                  <td>{{ item.code}}</td>
+                  <td>{{ item.name }}
+                  </td>
+                  <td>{{ item.room }}
+                  </td>
+                  <td>{{ item.vendor}}
+                  </td>
+                  <td>{{ item.date_buy}}
+                  </td>
+                  <td>
+                    {{ form.open({ url: '/items/edit/' + item.id, method: 'GET' }) }}
 
-                                            {% if items.length == 0 %}
-                                                <p>There are currently no tickets.</p>
-                                            {% else %}
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Code</th>
-                                                            <th>Name</th>
-                                                            <th>Room</th>
-                                                            <th>Vendor</th>
-                                                            <th>Date Buy</th>
-                                                            <th style="text-align:center" colspan="2">Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    {% for item in items %}
-                                                        <tr>
-                                                            <td>{{ item.code}}</td>
-                                                            <td>{{ item.name }} </td>
-                                                            <td>{{ item.room }} </td>
-                                                            <td>{{ item.vendor}} </td>
-                                                            <td>{{ item.date_buy}} </td>
-                                                            <td>
-                                                                {{ form.open({ url: '/admin/items/edit/' + item.id, method: 'GET' }) }}
+                    {{ form.button('Edit', null, { class: 'btn btn-info btn-xs' }) }}
+                    {{ form.close() }}
 
-                                                                    {{ form.button('Edit', null, { class: 'btn btn-info btn-xs' }) }}
-                                                                {{ form.close() }}
+                    {{ form.open({ url: '/items/detail/' + item.id, method: 'GET' }) }}
 
-                                                                {{ form.open({ url: '/admin/items/detail/' + item.id, method: 'GET' }) }}
+                    {{ form.button('Detail', null, { class: 'btn btn-warning btn-xs' }) }}
+                    {{ form.close() }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
 
-                                                                    {{ form.button('Detail', null, { class: 'btn btn-warning btn-xs' }) }}
-                                                                {{ form.close() }}
-                                                            </td>
-                                                        </tr>
-                                                    {% endfor %}
-                                                    </tbody>
-                                                </table>
-                                            {% endif %}
-
-
-                    </div>
-                </div>
-            </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

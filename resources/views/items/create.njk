@@ -1,0 +1,96 @@
+{% extends 'layouts.master' %}
+
+{% block title %}
+  New Items
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">New Items
+      </div>
+      <div class="panel-body">
+        <a href="{{ ('/items') }}" title="Back">
+          <button class="btn btn-warning btn-xs">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Back</button>
+        </a>
+        <br/>
+        <br/>
+
+        {% include 'includes.errors' %}
+
+        {{ form.open({ url: '/items', method: 'POST', class: 'form-horizontal' }) }}
+        {{ csrfField }}
+        <div class="form-group">
+          {{ form.label('Code Items', 'Code Item', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.text('code', old('code'), { class: 'form-control',required:'true',autocomplete:'off' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('Name', 'Name', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.text('name', old('name'), { class: 'form-control',required:'true',autocomplete:'off' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('Desc', 'Desc', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.textarea('desc', old('desc'), { class: 'form-control' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('room', 'Rooms', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.textarea('room', old('room'), { class: 'form-control' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('Desc', 'Vendor', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.textarea('vendor', old('vendor'), { class: 'form-control', required:'true'}) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('notes', 'Notes', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.textarea('notes', old('desc'), { class: 'form-control' , required:'true'}) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('notes', 'Date Buy', { class: 'col-md-4 control-label' }) }}
+          <div class="col-md-6">
+            <input type="text" class="form-control" required="true" name="datebuy" placeholder="yyyy-mm-dd" id="datepicker">
+            <span class="input-group-addon bg-primary b-0 text-white">
+              <i class="ti-calendar"></i>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('Expired Date', 'Expired Date', { class: 'col-md-4 control-label' }) }}
+          <div class="col-md-6">
+            <input type="text" class="form-control" required="true" name="expired" placeholder="yyyy-mm-dd" id="datepicker2">
+            <span class="input-group-addon bg-primary b-0 text-white">
+              <i class="ti-calendar"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-6 col-md-offset-4">
+            {{ form.button('Add items', null, { class: 'btn btn-primary' }) }}
+          </div>
+        </div>
+        {{ form.close() }}
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

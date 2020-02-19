@@ -11,6 +11,9 @@ class ItemsController {
       category: category.toJSON()
     });
   }
+  * create (request,response) {
+    yield response.sendView('item.create')
+  }
 }
 
 module.exports = ItemsController;
