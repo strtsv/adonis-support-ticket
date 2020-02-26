@@ -1,0 +1,87 @@
+{% extends 'layouts.master' %}
+
+{% block title %}
+  New Items
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">New Items
+      </div>
+      <div class="panel-body">
+        <a href="{{ ('/items') }}" title="Back">
+          <button class="btn btn-warning btn-xs">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Back</button>
+        </a>
+        <br/>
+        <br/>
+
+        {% include 'includes.errors' %}
+
+        {{ form.open({ url: '/items/update', method: 'POST', class: 'form-horizontal' }) }}
+        {{ csrfField }}
+
+        <div class="form-group">
+          {{ form.label('Name', 'Name', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.label('name', items.name, { class: 'form-control' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('Desc', 'Desc', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.label('desc', items.desc, { class: 'form-control' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('room', 'Rooms', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.label('room', items.room, { class: 'form-control' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('Desc', 'Vendor', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.label('vendor', items.vendor, { class: 'form-control' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('notes', 'Notes', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.label('notes', items.notes, { class: 'form-control' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('notes', 'Date Buy', { class: 'col-md-4 control-label' }) }}
+          <div class="col-md-6">
+            {{ form.label('notes', items.date_buy, { class: 'control-label' }) }}
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          {{ form.label('notes', 'Expired Date', { class: 'col-md-4 control-label' }) }}
+          <div class="col-md-6">
+            {{ form.label('Expired', items.expired, { class: 'control-label' }) }}
+
+          </div>
+        </div>
+
+        {{ form.close() }}
+      </div>
+    </div>
+
+  </div>
+  <script>
+    function formatDate(value) {
+      return value.getMonth() + 1 + "-" + value.getDate() + "-" + value.getYear();
+    }
+  </script>
+{% endblock %}

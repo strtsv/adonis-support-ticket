@@ -20,30 +20,14 @@ class ItemsController {
     const item = yield Items.query()
       .where("id", request.param("item_id"))
       .firstOrFail();
-    // const time = Antl.formatDate(item.date_buy, {
-    //   month: "numeric",
-    //   day: "numeric",
-    //   year: "numeric"
-    // });
-    yield response.sendView("items.show", {
-      items: item.toJSON(),
-      time: item.date_buy
-      // time: time
-    });
+    yield response.sendView("items.show", { items: item.toJSON() });
   }
   *edit(request, response) {
     const item = yield Items.query()
       .where("id", request.param("item_id"))
       .firstOrFail();
-    // const time = Antl.formatDate(item.date_buy, {
-    //   month: "numeric",
-    //   day: "numeric",
-    //   year: "numeric"
-    // });
     yield response.sendView("items.edit", {
-      items: item.toJSON(),
-      time: item.date_buy
-      // time: time
+      items: item.toJSON()
     });
     console.log(time);
   }
@@ -64,7 +48,6 @@ class ItemsController {
         .withAll()
         .andWith({ errors: validation.messages() })
         .flash();
-
       return response.redirect("back");
     }
     const post = yield Items.findBy("id", request.input("id"));
