@@ -3,6 +3,9 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+Route.get('users','AdminController.index').middleware('auth')
+Route.get('user/create','AdminController.addUser').middleware('auth')
+Route.post('user','AdminController.store').middleware('auth')
 Route.get('register', 'AuthController.showRegisterPage')
 Route.post('register', 'AuthController.register')
 Route.get('login', 'AuthController.showLoginPage')

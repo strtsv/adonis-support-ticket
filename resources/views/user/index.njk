@@ -1,0 +1,75 @@
+{% extends 'layouts.master' %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">List User
+      </div>
+      <div class="panel-body">
+
+        <a href="{{ ('/user/create') }}" class="btn btn-success btn-sm" title="Add New Article">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Add New
+        </a>
+
+        {% include 'includes.errors' %}
+
+        {% if user.length == 0 %}
+          <p>There are currently no tickets.</p>
+        {% else %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Position</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for users in user %}
+                <tr>
+                  <td>
+                    {{ users.username }}
+                  </td>
+                  <td>
+                    {{ users.email}}
+                  </td>
+
+                  <td>
+                    {% for depart in departemens %}
+                      {% if depart.id == users.departemen_id %}
+                        {{ depart.name }}
+                      {% endif %}
+                    {% endfor %}
+                  </td>
+                  <td>
+
+                    {% if users.is_admin == '2' %}
+                      <span class="label label-success">Manajer</span>
+                    {% elif users.is_admin == '3' %}
+                      <span class="label label-info">Wakil Direktur</span>
+                    {% elif users.is_admin == '4' %}
+                      <span class="label label-primary">Direktur</span>
+                    {% elif users.is_admin == '0' %}
+                      <span class="label label-danger">User</span>
+                    {% endif %}
+                  </td>
+                </td>
+
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'layouts.master' %}
+
+{% block title %}
+  Add
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">New User
+      </div>
+      <div class="panel-body">
+        <a href="{{ ('/user') }}" title="Back">
+          <button class="btn btn-warning btn-xs">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Back</button>
+        </a>
+        <br/>
+        <br/>
+
+        {% include 'includes.errors' %}
+
+        {{ form.open({ url: '/user', method: 'POST', class: 'form-horizontal' }) }}
+        {{ csrfField }}
+
+        <div class="form-group">
+          {{ form.label('username', 'Username', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.text('username', old('username'), { class: 'form-control' }) }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          {{ form.label('email', 'Email', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.email('email', old('email'), { class: 'form-control' }) }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          {{ form.label('departemens', 'departemens', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+
+            {{ form.select('departemens', departemens, null, 'Select departemens', { class: 'form-control' }) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form.label('Position', 'Position', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            <select class="col-md-6" name="position">
+              <option value="#">Select Position</option>
+              <option value="0">User</option>
+              <option value="2">Manager</option>
+              <option value="3">Wakil Direktur</option>
+              <option value="4">Direktur Utama</option>
+
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          {{ form.label('password', 'Password', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.password('password', null, { class: 'form-control' }) }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          {{ form.label('password_confirmation', 'Confirm Password', { class: 'col-md-4 control-label' }) }}
+
+          <div class="col-md-6">
+            {{ form.password('password_confirmation', null, { class: 'form-control' }) }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-6 col-md-offset-4">
+            {{ form.button('Add User', null, { class: 'btn btn-primary' }) }}
+          </div>
+        </div>
+        {{ form.close() }}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
