@@ -39,6 +39,59 @@ class AdminController {
     });
     response.redirect("/user");
   }
+  *report(request, response) {
+    var Tiket;
+    var req = request.get();
+    var start = req.start;
+    var end = req.end;
+    if (start != null) {
+      Tiket = yield Database.from(
+        "tickets"
+      ).whereRaw("date(created_at) between ? and ?", [start, end]);
+      console.log(Tiket);
+    } else {
+      start = null;
+      end = null;
+      const Tiket2 = yield Ticket.all();
+      Tiket = Tiket2.toJSON();
+    }
+    const categories = yield Category.all();
+    const user = yield User.all();
+    yield response.sendView("report.index", {
+      tickets: Tiket,
+      start: start,
+      end: end,
+      categories: categories.toJSON(),
+      user: user.toJSON()
+    });
+  }
+  *postreport(request, response) {
+    const Tiket = yield Ticket.all();
+    console.log(request);
+    yield response.sendView("report.index", {
+      tickets: Tiket.toJSON()
+    });
+  }
+  *reportdetail(request, response) {
+    const ticket = yield Ticket.query()
+      .where("ticket_id", request.param("ticket_id"))
+      .with("user")
+      .firstOrFail();
+    const comments = yield ticket
+      .comments()
+      .with("user")
+      .fetch();
+    const category = yield Category.pair("id", "name");
+    const Category_ticket = yield ticket.category().fetch();
+    const User = yield ticket.updated().fetch();
+    yield response.sendView("report.detail", {
+      ticket: ticket.toJSON(),
+      comments: comments.toJSON(),
+      category: category,
+      category_ticket: Category_ticket,
+      users: User
+    });
+  }
 }
 
-module.exports = AdminController
+module.exports = AdminController;

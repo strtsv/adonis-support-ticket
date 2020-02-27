@@ -1,0 +1,93 @@
+{% extends 'layouts.master' %}
+
+{% block title %}
+  {{ ticket.title }}
+{% endblock %}
+
+{% block content %}
+  <form method="post" action="#" id="printJS-form">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            #{{ ticket.ticket_id }}
+            -
+            {{ ticket.title }}
+          </div>
+
+          <div class="panel-body">
+            {% include 'includes.status' %}
+            {% include 'includes.errors' %}
+
+            <div class="ticket-info">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Subject
+                    </th>
+                    <td>{{ ticket.message }}</td>
+                  </tr>
+                  {% if category_ticket != null %}
+                    {% if category_ticket.length != 0 %}
+                      <tr>
+                        <th>Category Ticket
+                        </th>
+                        <td>{{ category_ticket.name }}</td>
+                      </tr>
+                    {% endif %}
+                  {% endif %}
+
+                  <tr>
+                    <th>Status</th>
+                    <td>
+                      {% if ticket.status == 'Open' %}
+                        <span class="label label-success">{{ ticket.status }}</span>
+                      {% else %}
+                        <span class="label label-danger">{{ ticket.status }}</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Created</th>
+                    <td>{{ ticket.created_at }}</td>
+                  </tr>
+                  <tr>
+                    <th>Last Approve By</th>
+                    <td>
+                      <span class="label label-success">{{ users.username }}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Last Approve date</th>
+                    <td>
+                      <span class="label label-success">{{ ticket.updated_at }}</span>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+            </div>
+
+            <hr>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<button type="button" onclick="printJS('printJS-form', 'html')">
+  Print Form
+</button>
+
+{% endblock %}

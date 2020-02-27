@@ -1,0 +1,93 @@
+{% extends 'layouts.master' %}
+
+{% block title %}
+  Report
+{% endblock %}
+
+{% block content %}
+
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Report
+      </div>
+      <div class="panel-body">
+
+        {% if old('error') %}
+          <div class="alert alert-danger">
+            {{ old('error') }}
+          </div>
+        {% endif %}
+
+        {% if items.length == 0 %}
+          <p>There are currently no tickets.</p>
+        {% else %}
+
+          <div class="form-group">
+            {{ form.open({ url: '/report', method: 'GET', class: 'form-horizontal',id:"printJS-form" }) }}
+
+            <label class="control-label col-sm-4">Date</label>
+            <div class="col-sm-8">
+
+              <div class="input-daterange input-group" id="date-range">
+                <input type="text" class="form-control" required='true' name="start" value="{{start}}"/>
+                <span class="input-group-addon bg-primary b-0 text-white">to</span>
+                <input type="text" class="form-control" required='true' name="end" value="{{end}}"/>
+              </div>
+              <div class="input-group">
+                {{ form.button('Submit', null, { class: 'btn btn-primary' }) }}
+
+              </div>
+              <!-- input-group -->
+            </div>
+            {{ form.close() }}
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Last Approve</th>
+                <th>created</th>
+                <th>date Approve</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in tickets %}
+                <tr>
+                  <td>{{ item.title }}
+                  </td>
+                  <td>
+                    {% for category in categories %}
+
+                      {% if category.id == item.category_id %}
+                        {{ category.name }}
+                      {% endif %}
+                    {% endfor %}
+
+                  </td>
+                  <td>
+                    {% for users in user %}
+                      {% if users.id == item.updated_by %}
+                        {{ users.username }}
+                      {% endif %}
+                    {% endfor %}
+
+                  </td>
+                  <td>{{item.created_at}}</td>
+                  <td>{{item.updated_at}}</td>
+                  <td>
+                    <a href="/report/detail/{{ item.ticket_id }}" class="btn btn-primary">Show</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
