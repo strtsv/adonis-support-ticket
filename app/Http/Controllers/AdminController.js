@@ -37,7 +37,7 @@ class AdminController {
       is_admin: request.input("position"),
       departemen_id: request.input("departemens")
     });
-    response.redirect("/user");
+    response.redirect("/users");
   }
   *report(request, response) {
     var Tiket;
