@@ -83,13 +83,11 @@ class AdminController {
       .fetch();
     const category = yield Category.pair("id", "name");
     const Category_ticket = yield ticket.category().fetch();
-    const User = yield ticket.updated().fetch();
     yield response.sendView("report.detail", {
       ticket: ticket.toJSON(),
       comments: comments.toJSON(),
       category: category,
-      category_ticket: Category_ticket,
-      users: User
+      category_ticket: Category_ticket
     });
   }
 }
