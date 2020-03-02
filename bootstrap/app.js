@@ -31,7 +31,8 @@ const providers = [
   'adonis-auth/providers/AuthManagerProvider',
   'adonis-websocket/providers/WsProvider',
   'adonis-antl/providers/AntlProvider',
-  'adonis-validation-provider/providers/ValidatorProvider'
+  'adonis-validation-provider/providers/ValidatorProvider',
+  'adonis-mail-provider/providers/MailProvider'
 ]
 
 /*
@@ -81,7 +82,8 @@ const aliases = {
   Ws: 'Adonis/Addons/Ws',
   Validator: 'Adonis/Addons/Validator',
   Antl: 'Adonis/Addons/Antl',
-  Formats: 'Adonis/Addons/AntlFormats'
+  Formats: 'Adonis/Addons/AntlFormats',
+  Mail: 'Adonis/Addons/Mail'
 }
 
 /*
