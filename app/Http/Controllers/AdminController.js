@@ -1,7 +1,6 @@
 "use strict";
 const Database = use("Database");
 const Validator = use("Validator");
-const Antl = use("Antl");
 const User = use("App/Model/User");
 const departemens = use("App/Model/Department");
 const Category = use("App/Model/Category");
