@@ -1,0 +1,20 @@
+{
+  "name": "adonis-app",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "jsusilo <enr@bk.ru>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jsusilo/adonis-support-ticket",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "print-js": "print.js#^1.0.63"
+  }
+}
