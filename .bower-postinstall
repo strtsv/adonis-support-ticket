@@ -1,4 +1,0 @@
-#!/bin/sh
-
-cp bower_components/print-js/dist/print.js public/assets/js/print.js
-cp bower_components/print-js/dist/print.css public/assets/css/print.css

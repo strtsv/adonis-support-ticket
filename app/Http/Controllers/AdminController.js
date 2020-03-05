@@ -9,7 +9,6 @@ const Ticket = use("App/Model/Ticket");
 class AdminController {
   *index(request, response) {
     const user = yield User.query().whereNotIn("is_admin", [1]);
-    console.log(user);
     const depart = yield departemens.all();
     yield response.sendView("user.index", {
       user: user,
@@ -66,7 +65,6 @@ class AdminController {
   }
   *postreport(request, response) {
     const Tiket = yield Ticket.all();
-    console.log(request);
     yield response.sendView("report.index", {
       tickets: Tiket.toJSON()
     });
